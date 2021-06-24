@@ -1,0 +1,60 @@
+0a. Contents
+	1. Classes ajoutées (avec une description des extensions)
+	2. Modifications personnelles
+	3. Liste de toutes les extensions
+
+1. Classes ajoutées (avec une description des extensions)
+
+1a. Dans ch/epfl/cs107/play/game/superpacman/area:
+- (class) GameoverPage
+ |  * classe qui dessine l'interface du game Over
+ 
+- (class) PausePage
+ |  * classe qui dessine l'interface Pause
+ 
+- (class) WelcomePage
+ |  * classe qui dessine l'interface de la Welcome Page (qui vous demande le mode de jeu)
+ | * flèche qui bouge pour visualiser le choix du mode par l'utilisateur
+ 
+- (class) WinPage
+ |  * classe qui dessine l'interface de la Win Page( quand vous gagnez )
+ 
+(ils implémentent tous Graphics)
+
+Nous avons placé ces classes dans SuperPacmanArea car ce sont typiquement des aires. 
+Créer des classes à part pour chaque image différente nous parraissait naturel car 
+plus facile à manipuler et à implémenter 
+
+
+1b.Dans ch/epfl/cs107/play/game/superpacman/area:
+- (class) Level0, Level1, Level2
+	(extends SuperPacmanArea)
+ |  * classe qui s'occupe d'initialiser les acteurs dans chaque niveau
+ 
+
+1c.Dans ch/epfl/cs107/play/game/arpg/actor :
+- (class) CollectableAreaEntity
+    * Extended by Bonus, Diamond, Key, Cherry
+    
+
+
+2. Modifications personnelles
+
+- Le mode multijoueur s'est fait à plusieurs niveaux:
+1. Dans SuperPacman, où nous initialisons le mode en fonction de l'input de l'utilisateur
+2. Cet attribut mode est ensuite utilisé dans SuperPacmanBehavior dans RegisterActors et qui va instancié le boolean isPlayer2 à true (qui se trouve dans Fantome)
+3. Enfin, Pinky qui hérite de Fantome, récupère l'attribut isPlayer2 et on a utilisé ce boolean dans des ifs conditions
+
+- Nous avons également fait en sorte que pendant un certain intervalle de temps après s'être respawn -- nous avons 
+choisis 2 secondes, mais vous pouvez aussi en décider la durée en modifiant dans Fantome l'attribut "intouchableTime"
+dans les méthodes "respawn" et "init" ainsi que l'attribut "recreatingTime" dans la méthode "interactWith(Fantome 
+fantome)" dans SuperPacmanPlayerHandler -- le Pacman est invincible (car si le Pacman se faisait toucher trop 
+près de l'endroit ou il respawn, il risque d'être bloqué)
+(De même pour les fantomes quand ils se sont fait mangé en mode Afraid)
+
+4. Liste de toutes les extensions :
+
+- GameoverPage
+- PausePage
+- WelcomePage
+- WinPage
